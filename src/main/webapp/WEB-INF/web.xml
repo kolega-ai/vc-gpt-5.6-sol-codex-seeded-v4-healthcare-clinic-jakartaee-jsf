@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" version="6.0">
+  <display-name>Harbour Clinic Patient Portal</display-name>
+  <context-param><param-name>jakarta.faces.PROJECT_STAGE</param-name><param-value>Production</param-value></context-param>
+  <context-param><param-name>jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name><param-value>true</param-value></context-param>
+  <servlet><servlet-name>Faces Servlet</servlet-name><servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class><load-on-startup>1</load-on-startup></servlet>
+  <servlet-mapping><servlet-name>Faces Servlet</servlet-name><url-pattern>*.xhtml</url-pattern></servlet-mapping>
+  <security-constraint><web-resource-collection><web-resource-name>Protected portal</web-resource-name><url-pattern>/app/*</url-pattern></web-resource-collection><auth-constraint><role-name>clinic_admin</role-name><role-name>clinician</role-name><role-name>front_desk</role-name><role-name>patient</role-name></auth-constraint></security-constraint>
+  <security-constraint><web-resource-collection><web-resource-name>Admin surface</web-resource-name><url-pattern>/admin/*</url-pattern></web-resource-collection><auth-constraint><role-name>clinic_admin</role-name></auth-constraint></security-constraint>
+  <security-constraint><web-resource-collection><web-resource-name>Clinician surface</web-resource-name><url-pattern>/clinical/*</url-pattern></web-resource-collection><auth-constraint><role-name>clinic_admin</role-name><role-name>clinician</role-name></auth-constraint></security-constraint>
+  <security-role><role-name>clinic_admin</role-name></security-role><security-role><role-name>clinician</role-name></security-role><security-role><role-name>front_desk</role-name></security-role><security-role><role-name>patient</role-name></security-role>
+  <session-config><session-timeout>30</session-timeout><cookie-config><http-only>true</http-only><secure>false</secure></cookie-config><tracking-mode>COOKIE</tracking-mode></session-config>
+  <error-page><error-code>404</error-code><location>/error.xhtml</location></error-page><error-page><error-code>500</error-code><location>/error.xhtml</location></error-page>
+  <welcome-file-list><welcome-file>index.xhtml</welcome-file></welcome-file-list>
+</web-app>

@@ -1,0 +1,9 @@
+embed-server --std-out=echo --server-config=standalone.xml
+module add --name=org.postgresql --resources=/tmp/postgresql.jar --dependencies=java.sql,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql,driver-class-name=org.postgresql.Driver)
+/subsystem=datasources/data-source=ClinicDS:add(jndi-name=java:/jdbc/ClinicDS,driver-name=postgresql,connection-url="jdbc:postgresql://${env.DB_HOST:postgres}:${env.DB_PORT:5432}/${env.DB_NAME:clinic}",user-name="${env.DB_USER:clinic}",password="${env.DB_PASSWORD:clinic_local_only}",min-pool-size=2,max-pool-size=20,validate-on-match=true,background-validation=true)
+/subsystem=datasources/data-source=ClinicDS:enable
+/subsystem=undertow/application-security-domain=other:write-attribute(name=integrated-jaspi,value=false)
+/subsystem=undertow/configuration=filter/expression-filter=same-site-cookie:add(expression="samesite-cookie(mode=Strict, cookie-pattern=JSESSIONID)")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=same-site-cookie:add()
+stop-embedded-server

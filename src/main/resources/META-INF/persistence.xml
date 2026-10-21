@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.1">
+  <persistence-unit name="clinicPU" transaction-type="JTA">
+    <jta-data-source>java:/jdbc/ClinicDS</jta-data-source>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.jdbc.time_zone" value="UTC"/>
+      <property name="hibernate.hbm2ddl.auto" value="none"/>
+      <property name="hibernate.cache.use_second_level_cache" value="false"/>
+      <property name="hibernate.integration.envers.enabled" value="false"/>
+    </properties>
+  </persistence-unit>
+</persistence>

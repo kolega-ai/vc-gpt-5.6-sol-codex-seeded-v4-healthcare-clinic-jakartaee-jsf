@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_15_0.xsd"
+           version="15.0">
+  <security-domain>other</security-domain>
+  <security-role><role-name>clinic_admin</role-name><principal-name>clinic_admin</principal-name></security-role>
+  <security-role><role-name>clinician</role-name><principal-name>clinician</principal-name></security-role>
+  <security-role><role-name>front_desk</role-name><principal-name>front_desk</principal-name></security-role>
+  <security-role><role-name>patient</role-name><principal-name>patient</principal-name></security-role>
+</jboss-web>
